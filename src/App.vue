@@ -87,6 +87,7 @@
     <newLogin v-if="showLogin"></newLogin>
     <!-- 聊天室 -->
      <chatRoom v-if="chatShow"  />
+     <whPage v-if="showWh" />
   </div>
 </template>
 
@@ -97,6 +98,7 @@ import LeftNav from "./components/leftNav.vue";
 import newLogin from "./views/login/newLogin.vue";
 import chatRoom from "./views/Lottery/chatRoom.vue";
 import tyPop from "./components/popTY.vue";
+import whPage from "./components/wh.vue";
 import { mapState, mapMutations } from "vuex";
 import {
   removeAllactive,
@@ -147,18 +149,18 @@ export default {
       notice: [],
       memberAccount: "",
       websock: null,
+      showWh:false,
       // lineList1:[]
     };
   },
 
-  components: { Header, Footer, LeftNav, newLogin, tyPop,chatRoom},
+  components: { Header, Footer, LeftNav, newLogin, tyPop,chatRoom,whPage},
 
   destroyed() {
     window.removeEventListener("scroll", this.scrollToTop);
   },
 
   created() {
-    
 
     if(this.skin){
         this.SETSKINDATA(this.skin);
@@ -203,6 +205,7 @@ export default {
     },
   },
   mounted() {
+    this.showWh=window.isshowwh
     // //console.log(this.$store.state.userinfo.user_id)
     // 检测浏览器路由改变页面不刷新问题,hash模式的工作原理是hashchange事件
     window.addEventListener(

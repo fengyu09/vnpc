@@ -27,7 +27,11 @@ export default {
             { color: "2", name: "blue" },
             { color: "3", name: "green" },
         ],
-        mess:['No news'],
+        mess:['No news',
+              "Để cung cấp cho bạn trải nghiệm trò chơi và dịch vụ ổn định hơn, tốt hơn, chúng tôi sẽ tạm thời nâng cấp và bảo trì toàn bộ trang web vào ngày 28.2. Sau khi bảo trì hoàn tất, chúng tôi sẽ thông báo cho bạn dưới dạng tin thông báo. Xin lỗi vì sự bất tiện đã gây ra !",
+              "hereby notified",
+              "SITE-WIDE MAINTENANCE NOTICE"
+      ],
         brand:[
             {
                 title:'Strength brand recommendation',
