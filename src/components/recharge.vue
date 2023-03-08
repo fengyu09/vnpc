@@ -9,7 +9,7 @@
           <!-- 充值方式 -->
           <div class="recharge-type" v-if="!isYHK">
               <div class="clearfix" v-if="lanCode!=2">
-                  <h3 class="fl">{{$t('recharge.text[1]')}}</h3>
+                  <h3 class="fl">{{$t('recharge.text[1]')}} <span style="color:red;margin-left: 212px">(1VNDK = 1000VND)</span></h3>
                   <!-- 跳转到手动虚拟币说明页面 -->
                   <!-- <div class="p fr" v-if="isXnb||isSdXnb"><router-link tag="a" target="_blank"   style="font-size: 14px;color:#F73B3B" to="/Introduction">Hiểu về tiền ảo</router-link></div> -->
               </div>
@@ -132,7 +132,8 @@
         
          
               <!-- 银行卡充值 -->
-          <div class="yhk-box" v-show="isYHK">
+              <!-- -->
+          <div class="yhk-box"  v-show="isYHK">
             <!-- <div class="back-select" @click="isYHK=false;currType=0">Quay lại</div> -->
             <div class="back-select" @click="isYHK=false;"> {{$t('recharge.sdyhk.text[4]')}}</div>
             <p class="yhk-bt">1. {{$t('recharge.sdyhk.text[0]')}}</p>
@@ -210,11 +211,13 @@
               :placeholder="$t('recharge.sdyhk.cyk.add.pla[0]')"
                 style="width:285px"
             ></el-autocomplete>
+            <p style="visibility: hidden;"> CC</p>
             </div>
              <div class="yhk-bd">
               <span class="card-title">{{$t('recharge.sdyhk.inputTitle[4]')}}:</span>
               <br>
-              <input v-model="czMoney" type="text" :placeholder="$t('recharge.warnText[1]')">
+              <input v-model="czMoney" type="text" :placeholder="$t('recharge.warnText[1]')+' K VND '">
+              <P>Thực tế trong tài khoản: {{ czMoney*1 }} = {{ czMoney*1000 }}VND</P>
             </div>
             <div class="yhk-bd ">
               <span class="card-title">{{$t('recharge.sdyhk.inputTitle[5]')}}:</span>
