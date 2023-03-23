@@ -191,7 +191,7 @@
           <img src="../assets/imgaes/topNav/hot.png" alt="">
         {{$t('home.nav[2]')}}
         </router-link>
-        <router-link to="/movie" v-if="codeToken&&$store.state.userinfo.id>0&&lanCode!=2"><img src="../assets/imgaes/topNav/icon-zb.png" alt=""> {{$t('home.nav[1]')}}</router-link>
+        <!-- <router-link to="/movie" v-if="codeToken&&$store.state.userinfo.id>0&&lanCode!=2"><img src="../assets/imgaes/topNav/icon-zb.png" alt=""> {{$t('home.nav[1]')}}</router-link> -->
        
       </div>
       

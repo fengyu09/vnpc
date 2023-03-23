@@ -65,10 +65,10 @@
             <i class="icon icon10"></i>
             <router-link to="/gameReport">{{$t('member[11]')}}</router-link>
           </li>
-          <li :class="{ active: cur == 11 }" v-if='lanCode!=2'>
+          <!-- <li :class="{ active: cur == 11 }" v-if='lanCode!=2'>
             <i class="icon icon11"></i>
             <router-link to="/videoCollect">{{$t('member[12]')}}</router-link>
-          </li>
+          </li> -->
         </ul>
       </div>
 
