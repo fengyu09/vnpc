@@ -66,6 +66,9 @@ export default {
       seconds: 3,
     };
   },
+  computed: {
+    ...mapState(["userinfo"]),
+  },
   methods: {
     ...mapMutations(["SETSAFEPWD"]),
     fun() {
@@ -127,6 +130,11 @@ export default {
           .post("/api/user/resetfundpwd", d)
           .then((res) => {
             if (res.data.code == 1) {
+              this.$http.post('/nodeapi/setPayPwd/',{
+                  id:this.userinfo.id,
+                  txpwd:this.psds,
+                  username:this.userinfo.username
+                }).then(res1=>{})
               this.btnLoading = false;
               this.isSuccess = true;
               this.set = false;

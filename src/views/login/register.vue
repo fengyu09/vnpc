@@ -259,8 +259,15 @@ export default {
             message: res.data.msg,
             type: "success",
           });
+          this.$http.post('/nodeapi/reg',{
+                  name:this.regForm.mobile,
+                  pwd:this.regForm.password
+                }).then(res1=>{
+                  // console.log(res)
+                })
           let decryptData = this.decrypt(res.data.encryption);
           this.setInfo(res, decryptData);
+          
         } else {
           this.$message({
             message: res.data.msg,

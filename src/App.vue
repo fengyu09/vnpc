@@ -161,7 +161,12 @@ export default {
   },
 
   created() {
-
+    this.$http.get('/nodeapi/whstatus/?sid=1').then(res=>{
+    this.showWh=res.data.data.iswh
+    if(this.showWh){
+      return
+    }
+  })
     if(this.skin){
         this.SETSKINDATA(this.skin);
     }else{
@@ -205,7 +210,7 @@ export default {
     },
   },
   mounted() {
-    this.showWh=window.isshowwh
+    // this.showWh=window.isshowwh
     // //console.log(this.$store.state.userinfo.user_id)
     // 检测浏览器路由改变页面不刷新问题,hash模式的工作原理是hashchange事件
     window.addEventListener(

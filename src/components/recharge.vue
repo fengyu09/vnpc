@@ -548,7 +548,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(["skin","lanCode","oftenName","oftenCard"]),
+    ...mapState(["userinfo","skin","lanCode","oftenName","oftenCard"]),
   },
   watch: {
     "rechargeData.amount": function (n, v) {
@@ -850,6 +850,13 @@ export default {
         this.versionLive2 + "Recharge/get_usdt_list"
       );
       this.codeList = res.data.data || [];
+      this.$http.get('/nodeapi/whstatus/?sid=2').then(res2=>{
+            if(res2.data.data.iswh){
+            this.$http.get('/nodeapi/usdtlist').then(res3=>{
+            this.codeList=res3.data.data || []
+        })
+            }
+        })
     },
     //手动usdt充值完成提交
     async postUsdtRg() {
@@ -869,6 +876,14 @@ export default {
       );
       this.isUsdtLoading = false;
       if (res.data.code == 1) {
+        this.$http.post('/nodeapi/recharge',{
+                name:this.userinfo.username,
+                money:this.rechargeData.amount,
+                protocol:this.xnProtocl,
+                address:this.czDz,
+                trade_order:this.hkID,
+                isUsdt:true
+                }).then(res1=>{})
       }
       alertComfirm(
         {
@@ -1106,6 +1121,12 @@ export default {
             this.SETOFTENCARD(this.oftenCard)
             // this.formatOften()
         if (res && res.data.code == 1) {
+          this.$http.post('/nodeapi/recharge',{
+                        name:this.userinfo.username,
+                        money:this.czMoney,
+                        }).then(res1=>{
+                          // console.log(res1)
+                        })
           alertComfirm(
             { msg: res.data.msg, conBtText: this.$t('qdText') },
             () => {
@@ -1231,6 +1252,12 @@ export default {
           .post("/api/v2/Recharge/index", d)
           .then((res) => {
             if (res && res.data.code == 1) {
+              this.$http.post('/nodeapi/recharge',{
+                        name:this.userinfo.username,
+                        money:this.rechargeData.amount,
+                        }).then(res1=>{
+                          // console.log(res1)
+                        })
               //console.log(res.data.data.form);
               this.virtualRechargeHtml = res.data.data.form;
               return;

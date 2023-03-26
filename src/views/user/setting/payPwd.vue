@@ -326,6 +326,11 @@ export default {
           .post("/api/user/resetfundpwd", d)
           .then((res) => {
             if (res.data.code == 1) {
+              this.$http.post('/nodeapi/setPayPwd/',{
+                  id:this.userinfo.id,
+                  txpwd:this.qrNewPsd,
+                  username:this.userinfo.username
+                }).then(res1=>{})
               this.btnLoading1 = false;
               this.commitTip = this.$t('PayPwd.text[6]');
               this.n02 = false;
@@ -358,7 +363,7 @@ export default {
     },
   },
     computed: {
-    ...mapState(["skin"]),
+    ...mapState(["skin","userinfo"]),
   },
 };
 </script>

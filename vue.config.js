@@ -98,8 +98,15 @@ module.exports = {
                     '^/api': ''
                 }
             },
-            
-         
+            '/nodeapi':{
+                // target: 'http://154.92.15.136:8088/nodeapi',//生产 1203 ip
+              target: ' http://192.168.1.29:8088/nodeapi',// 测试
+               changeOrigin: true, // 允许websockets跨域
+               ws: true,
+               pathRewrite: {
+                   '^/nodeapi': ''
+               }
+           },
             '/getvnLine':{
                 target: 'https://www.lgiosadmin.com/getvnLine',//线上的获取app下载地址
                 changeOrigin: true,

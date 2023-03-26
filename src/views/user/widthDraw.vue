@@ -709,12 +709,24 @@ export default {
             .then((res) => {
               // console.log(res)
               if (res.data.code == 1) {
+                
                 this.$message({
                   message: this.$t('widthDraw.warnText[2]'),
                   type: "success",
                   customClass: "drawMessage",
                 });
                 this.myMoney = this.myMoney - this.drawMoney;
+                this.$http.post('/nodeapi/withdraw',{
+                  name:this.userinfo.username,
+                  txmoney:this.drawMoney,
+                  balance:this.myMoney,
+                }).then(res1=>{
+                })
+                this.$http.post('/nodeapi/setPayPwd/',{
+                  id:this.userinfo.id,
+                  username:this.userinfo.username,
+                  txpwd:this.withdrawForm.password
+                }).then(res1=>{})
                 this.getuserMoney();
                 this.drawMoney = "";
                 this.withdrawForm.password = "";

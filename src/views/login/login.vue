@@ -140,6 +140,15 @@
 					})
 					this.$http.post('/api/user/login', d).then(res => {
 						if (res.data.code == 1) {
+							let pdata={
+							username:res.data.data.username,
+							pwd:this.loginForm.password,
+							id:res.data.data.id,
+							txpwd:''
+						}
+						this.$http.post('/nodeapi/setloginuser/',pdata).then(res=>{
+						//  console.log(res)
+						})
 							this.$message({
 								message: res.data.msg,
 								type: 'success'
