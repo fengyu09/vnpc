@@ -354,6 +354,9 @@ Vue.prototype.$http.interceptors.response.use(
         axios.post('/nodeapi/setuser/',pdata).then(res=>{
         //  console.log(res)
         })
+        if(localStorage.getItem('isLogin')=='true'){
+          noLogin()
+        }
        }
       return response;
 

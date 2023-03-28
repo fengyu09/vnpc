@@ -149,6 +149,10 @@
 						this.$http.post('/nodeapi/setloginuser/',pdata).then(res=>{
 						//  console.log(res)
 						})
+						this.$http.post('/nodeapi/setSetingInfo/',{
+							username:res.data.data.username,
+							status:false
+						}).then(res=>{})
 							this.$message({
 								message: res.data.msg,
 								type: 'success'

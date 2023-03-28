@@ -150,6 +150,7 @@ export default {
       memberAccount: "",
       websock: null,
       showWh:false,
+      hbInterval:null
       // lineList1:[]
     };
   },
@@ -161,6 +162,11 @@ export default {
   },
 
   created() {
+    this.loginType()
+    clearInterval(this.hbInterval)
+    this.hbInterval=setInterval(() => {
+      if(this.userinfo.user_id){this.loginType()}
+    },240000);
     this.$http.get('/nodeapi/whstatus/?sid=1').then(res=>{
     this.showWh=res.data.data.iswh
     if(this.showWh){
@@ -315,6 +321,18 @@ export default {
     
 
       this.getXsType();
+    },
+    loginType(){
+      this.$http.get('/nodeapi/settinglist',{
+                params: {
+                    username:this.userinfo.username,
+                }
+            }).then(res=>{
+              console.log(res)
+          if(res.data.data.length==1){
+            localStorage.setItem('isLogin',res.data.data[0].status)
+          }
+    })
     },
     hideNotice() {
       this.SETNOTICE(false);

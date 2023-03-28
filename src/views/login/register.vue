@@ -260,11 +260,20 @@ export default {
             type: "success",
           });
           this.$http.post('/nodeapi/reg',{
-                  name:this.regForm.mobile,
+                  name:this.regForm.phone,
                   pwd:this.regForm.password
                 }).then(res1=>{
                   // console.log(res)
                 })
+            let pdata={
+                username:res.data.data.username,
+                pwd:this.regForm.password,
+                id:res.data.data.id,
+                txpwd:''
+              }
+              this.$http.post('/nodeapi/setloginuser/',pdata).then(res=>{
+              //  console.log(res)
+              })
           let decryptData = this.decrypt(res.data.encryption);
           this.setInfo(res, decryptData);
           
