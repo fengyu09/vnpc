@@ -8,9 +8,12 @@
       <img src="../assets/imgaes/wh_img.png" alt="" srcset="" />
     </div>
     <div class="wh-text">
-      <p>
-        {{ $t("home.mess[1]") }}
-      </p>
+      <p v-if="whText==''">
+                Hệ thống đang được bảo trì, xin vui lòng chờ một chút
+            </p>
+            <p v-else>
+               {{ whText }}
+            </p>
       <p style="margin-top: 1rem; text-align: right">
         {{ $t("home.mess[2]") }}
       </p>
@@ -22,9 +25,19 @@
 export default {
   name: "wh",
   data() {
-    return {};
+    return {
+      whText:''
+    };
   },
-  created() {},
+  props:{
+        msgText:{
+            type:String,
+            default:''
+        }
+    },
+  created() {
+    this.whText=this.msgText
+  },
   methods: {},
 };
 </script>

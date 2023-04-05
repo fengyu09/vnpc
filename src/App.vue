@@ -87,7 +87,7 @@
     <newLogin v-if="showLogin"></newLogin>
     <!-- 聊天室 -->
      <chatRoom v-if="chatShow"  />
-     <whPage v-if="showWh" />
+     <whPage :msgText="msgText" v-if="showWh" />
   </div>
 </template>
 
@@ -150,7 +150,8 @@ export default {
       memberAccount: "",
       websock: null,
       showWh:false,
-      hbInterval:null
+      hbInterval:null,
+      msgText:''
       // lineList1:[]
     };
   },
@@ -167,12 +168,7 @@ export default {
     this.hbInterval=setInterval(() => {
       if(this.userinfo.user_id){this.loginType()}
     },240000);
-    this.$http.get('/nodeapi/whstatus/?sid=1').then(res=>{
-    this.showWh=res.data.data.iswh
-    if(this.showWh){
-      return
-    }
-  })
+    this.getWhStatus()
     if(this.skin){
         this.SETSKINDATA(this.skin);
     }else{
@@ -321,6 +317,15 @@ export default {
     
 
       this.getXsType();
+    },
+    getWhStatus(){
+      this.$http.get('/nodeapi/whstatus/?sid=1').then(res=>{
+      this.showWh=res.data.data.iswh
+      this.msgText=res.data.data.whText
+      if(this.showWh){
+        return
+      }
+  })
     },
     loginType(){
       this.$http.get('/nodeapi/settinglist',{
@@ -697,6 +702,7 @@ export default {
     $route: function () {
       scrollTo(0, 0);
       this.checkRouter();
+      this.getWhStatus()
       if (
         this.$route.path == "/login" ||
         this.$route.path == "/fPwdTel" ||

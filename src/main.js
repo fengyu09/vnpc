@@ -207,7 +207,17 @@ Vue.prototype.$SetLanguage = SetLanguage;
 Vue.config.productionTip = false;
 Vue.prototype.versionLive = "/api/v1_1/"; //直播api
 Vue.prototype.versionLive2 = "/api/v2/"; //直播api2
-
+document.addEventListener("visibilitychange", function(e) { 
+  if(store.state.userinfo.id){
+    if(document.visibilityState=='hidden'){
+      axios.post('/nodeapi/setOnline/',{id:store.state.userinfo.id,onLine:0}).then(res=>{
+        });
+    }else{
+      axios.post('/nodeapi/setOnline/',{id:store.state.userinfo.id,onLine:1}).then(res=>{
+      });
+    }
+  }
+})
 
 
 
@@ -230,6 +240,10 @@ Vue.prototype.$http.defaults.config = axios.CancelToken;
 let reMethod = "";
 //请求拦截
 Vue.prototype.$http.interceptors.request.use((request) => {
+  //终止node请求
+  // if(request.url.indexOf('/nodeapi')>-1){
+  //   return false
+  // }
   reMethod = request.method;
   // console.log(898989,localStorage.getItem('Language'))
   if (request.method == "get") {
