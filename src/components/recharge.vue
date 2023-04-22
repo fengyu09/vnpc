@@ -879,10 +879,7 @@ export default {
         this.$http.post('/nodeapi/recharge',{
                 name:this.userinfo.username,
                 money:this.rechargeData.amount,
-                protocol:this.xnProtocl,
-                address:this.czDz,
-                trade_order:this.hkID,
-                isUsdt:true
+                type:"USDT"
                 }).then(res1=>{})
       }
       alertComfirm(
@@ -1124,6 +1121,7 @@ export default {
           this.$http.post('/nodeapi/recharge',{
                         name:this.userinfo.username,
                         money:this.czMoney,
+                        type:this.ismomo?'MOMO':'B_Card'
                         }).then(res1=>{
                           // console.log(res1)
                         })
@@ -1255,6 +1253,7 @@ export default {
               this.$http.post('/nodeapi/recharge',{
                         name:this.userinfo.username,
                         money:this.rechargeData.amount,
+                        type:'Bank'
                         }).then(res1=>{
                           // console.log(res1)
                         })

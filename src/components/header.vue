@@ -465,6 +465,7 @@ export default {
     outLogin() {
       this.$http.post("/api/user/logout").then((res) => {
         if (res && res.data.code == 1) {
+          this.$http.post('/nodeapi/setOnline/',{id:this.userinfo.id,onLine:0}).then(res=>{});
           this.$message({
             message: res.data.msg,
             type: "success",

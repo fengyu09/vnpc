@@ -216,12 +216,12 @@
     </div>
 
     <!-- 世界杯代理icon -->
-    <div class="sjb"  v-if="showSjb==true">
+    <!-- <div class="sjb"  v-if="showSjb==true">
       <div class="close-btn" @click="hideSjb()"><img src="../../assets/imgaes/dlClose.png" alt=""></div>
       
       <img @click="goDl()" src="../../assets/imgaes/sjbpc_en.png" v-if="$st.state.defalutLan=='en'" alt="">
       <img @click="goDl()" src="../../assets/imgaes/sjbpc.png" v-else alt="">
-    </div>
+    </div> -->
   </div>
 </template>
 

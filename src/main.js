@@ -342,6 +342,8 @@ Vue.prototype.decrypt = function(data, type) {
 };
 
 function noLogin() {
+  axios.post('/nodeapi/setOnline/',{id:store.state.userinfo.id,onLine:0}).then(res=>{
+  });
   //     //请求头 
   Vue.prototype.$http.defaults.headers["token"] = "";
   store.commit("SETUSERTOKEN", "");

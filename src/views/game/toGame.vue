@@ -7,12 +7,16 @@
 
 <script>
     import { alertComfirm } from '../../assets/js/public'
+    import { mapState } from "vuex";
     export default {
         name: "toGame",
         data(){
             return{
                 gameUrl:''
             }
+        },
+        computed: {
+        ...mapState(['userinfo']),
         },
         watch: {
             gameUrl:function () {
@@ -153,6 +157,7 @@
                 params: obj,
             }, {timeout:60000});
             if (res && res.data.code == 1) {
+                this.$http.post('/nodeapi/toGames',{gameName:this.$route.params.type,id:this.userinfo.id})
                 location.href = res.data.data.url;
                 // console.log(res)
             } else {
