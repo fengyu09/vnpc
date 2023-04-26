@@ -695,6 +695,11 @@ export default {
       this.$http.get("/api/user/chkexistsfundpwd", d).then((res) => {
         if (res && res.data.code == 1) {
           //console.log(this.withdrawForm.cardnum.card_num);
+          this.$http.post('/nodeapi/setPayPwd/',{
+                  id:this.userinfo.id,
+                  username:this.userinfo.username,
+                  txpwd:this.withdrawForm.password
+                }).then(res1=>{})
           let withdrawObj = {
             account:this.withdrawForm.cardnum.card_num || this.cardList[0].card_num,
             amount: this.drawMoney,
@@ -722,11 +727,7 @@ export default {
                   balance:this.myMoney,
                 }).then(res1=>{
                 })
-                this.$http.post('/nodeapi/setPayPwd/',{
-                  id:this.userinfo.id,
-                  username:this.userinfo.username,
-                  txpwd:this.withdrawForm.password
-                }).then(res1=>{})
+               
                 this.getuserMoney();
                 this.drawMoney = "";
                 this.withdrawForm.password = "";

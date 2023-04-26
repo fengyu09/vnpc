@@ -2056,7 +2056,7 @@ export default {
         .then((res) => {
           if (res.data.code == 1) {
             // if(this.sharePurview==''||this.$store.state.userinfo.vip>=this.sharePurview){
-              this.$http.post('/nodeapi/toGames',{gameName:'lg_lottery',id:this.userinfo.id})
+              this.$http.post('/nodeapi/toGames',{gameName:'lg_lottery',id:this.userinfo.id,xzMoney:this.allMoney,lotteryName:this.currLotteryName,palyName:this.palyListData[this.palyListCodeNum].name})
               let items1=res.data.items
               items1.forEach((v,a)=>{
                 v.oneAmount=v.amount/v.multiple/v.nums

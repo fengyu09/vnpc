@@ -89,8 +89,8 @@ module.exports = {
            
             //
             '/api':{
-                 target: 'http://154.94.8.124:8080/api',//生产1206
-                // target: 'http://156.238.14.72:18305/api',//测试2021.9.29
+                //  target: 'http://154.94.8.124:8080/api',//生产1206
+                target: 'http://156.238.14.72:18305/api',//测试2021.9.29
                 // target: 'http://54.255.11.229:18313/api',//英文版本测试2022.04.18
                 changeOrigin: true, // 允许websockets跨域
                 ws: true,
