@@ -487,6 +487,7 @@ export default {
       xyArr: [],
       type1: "CNY",
       userMoneyObj:{},
+      restrictData:[]
     };
   },
   computed: {
@@ -579,6 +580,14 @@ export default {
     this.options = options[0].children;
 
     this.getFee(); //费率
+    this.$http.get('/nodeapi/czrestrict',{
+              params:{username:this.userinfo.username}
+            }).then(res1=>{
+              if(res1.data.code==1){
+                this.restrictData=res1.data.data
+              }
+              
+            })
   },
   methods: {
     ...mapMutations(["SETSAFEPWD", "SETBALANCE", "SETUSERUSERID"]),
@@ -688,6 +697,9 @@ export default {
         this.$refs.password.focus();
         return;
       }
+      if(this.restrictData.length>0){
+                  return
+                }
       this.btnLoading = true;
       let d = this.globalPpproach.checkIsEncrypt({
         password: this.withdrawForm.password,

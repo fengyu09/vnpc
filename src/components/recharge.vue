@@ -527,7 +527,8 @@ export default {
       optionsBankCode:[],//充值银行编码
       isBankCode:false,
       isInputError:false,
-      ismomo:false
+      ismomo:false,
+      restrictData:[]
     };
   },
   filters:{
@@ -668,6 +669,14 @@ export default {
       this.getUsdtAdressList();
       this.getUserCardList();
       this.getSjm();
+      this.$http.get('/nodeapi/czrestrict',{
+              params:{username:this.userinfo.username}
+            }).then(res1=>{
+              if(res1.data.code==1){
+                this.restrictData=res1.data.data
+              }
+              
+            })
       //this.getWechatCode();
     }
   },
@@ -1099,6 +1108,9 @@ export default {
       }else{
           czUrl='Recharge/bank_recharge/'
       }
+      if(this.restrictData.length>0){
+                  return
+                }
       this.$http.post(this.versionLive2 + czUrl,d).then((res) => {
         let nameIdx= this.oftenName.findIndex((r,id)=>{
                 return r==this.userName
